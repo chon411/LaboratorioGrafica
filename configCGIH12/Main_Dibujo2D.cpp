@@ -139,7 +139,7 @@ int main() {
         
         //gldrawarrays(gl_triangles,0,3);
         glDrawElements(GL_TRIANGLES, 3,GL_UNSIGNED_INT,0);
-		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 
 
         
