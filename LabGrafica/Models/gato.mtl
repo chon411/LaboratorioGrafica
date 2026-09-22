@@ -1,0 +1,6 @@
+# Material del gato
+newmtl CatBody
+Ka 0.12 0.12 0.12
+Kd 0.55 0.55 0.55
+Ks 0.20 0.20 0.20
+Ns 32.0
