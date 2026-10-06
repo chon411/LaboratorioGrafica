@@ -1,7 +1,7 @@
-//Previo7
+//práctica 7
 //Cornejo Gonzalez Mauricio
 //319274233
-//Fecha de entrega: 28/09/2026
+//fecha de entrega: 03/10/2026
 #include <iostream>
 #include <cmath>
 
@@ -12,6 +12,7 @@
 #include <GLFW/glfw3.h>
 
 // Other Libs
+#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
 // GLM Mathematics
@@ -39,12 +40,9 @@ GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
 bool firstMouse = true;
 
-// Light attributes
-glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
-
 // Deltatime
-GLfloat deltaTime = 0.0f;    // Time between current frame and last frame
-GLfloat lastFrame = 0.0f;    // Time of last frame
+GLfloat deltaTime = 0.0f;
+GLfloat lastFrame = 0.0f;
 
 int main()
 {
@@ -56,7 +54,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Mauricio Cornejo - Texturizado", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Mauricio Cornejo - Practica texturizado", nullptr, nullptr);
 
     if (nullptr == window)
     {
@@ -80,116 +78,112 @@ int main()
     }
 
     glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-    // Habilitar la prueba de profundidad
     glEnable(GL_DEPTH_TEST);
 
-    // HABILITAR TRANSPARENCIA (ALPHA BLENDING)
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    // Build and compile shader program
+    // Build and compile shader program (usando tus shaders .vs y .frag)
     Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
 
-    // Set up vertex data
-    GLfloat vertices[] =
-    {
-        // Positions            // Colors             // Texture Coords
-        -0.5f, -0.5f, 0.0f,    1.0f, 1.0f, 1.0f,     0.0f, 0.0f,
-         0.5f, -0.5f, 0.0f,    1.0f, 1.0f, 1.0f,     1.0f, 0.0f,
-         0.5f,  0.5f, 0.0f,    1.0f, 1.0f, 1.0f,     1.0f, 1.0f,
-        -0.5f,  0.5f, 0.0f,    1.0f, 1.0f, 1.0f,     0.0f, 1.0f,
+    // Coordenadas corregidas para las 6 caras usando el mapa en cruz
+    GLfloat vertices[] = {
+        // Posiciones           // Colores          // Coordenadas UV (UV Map)
+
+        //Cara Frontal (Cara 4)
+        -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.50f,
+         0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.50f,
+         0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.25f,
+         0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.25f,
+        -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.25f,
+        -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.50f,
+
+        //Cara Trasera (Cara 3)
+        -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 1.00f,
+         0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 1.00f,
+         0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.75f,
+         0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.75f,
+        -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.75f,
+        -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 1.00f,
+
+        //(Cara 2)
+        -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.25f,
+        -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.000f, 0.25f,
+        -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.000f, 0.50f,
+        -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.000f, 0.50f,
+        -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.50f,
+        -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.25f,
+
+        //Cara Derecha (Cara 5)
+         0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.25f,
+         0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.000f, 0.25f,
+         0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.000f, 0.50f,
+         0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.000f, 0.50f,
+         0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.50f,
+         0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.25f,
+
+         //Cara Superior (Cara 6)
+         -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.00f,
+          0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.00f,
+          0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.25f,
+          0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.25f,
+         -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.25f,
+         -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.00f,
+
+         //Cara Inferior (Cara 1)
+         -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.75f,
+          0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.75f,
+          0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.50f,
+          0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.666f, 0.50f,
+         -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.50f,
+         -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.333f, 0.75f
     };
 
-    GLuint indices[] =
-    {
-        0, 1, 3,
-        1, 2, 3
-    };
-
-    GLuint VBO, VAO, EBO;
+    GLuint VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
 
     glBindVertexArray(VAO);
+
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    // Position attribute
+    // Position attribute (location = 0)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
-    // Color attribute
+    // Color attribute (location = 1)
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
     glEnableVertexAttribArray(1);
-    // Texture Coordinate attribute
+    // Texture Coordinate attribute (location = 2)
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
     glEnableVertexAttribArray(2);
     glBindVertexArray(0);
 
-    stbi_set_flip_vertically_on_load(true);
-    int textureWidth, textureHeight, nrChannels;
-    unsigned char* image;
-
-    // ==========================================
-    // TEXTURA 1: SIN TRANSPARENCIA (RGB)
-    // 
-    // ==========================================
+    // Load texture
     GLuint texture1;
     glGenTextures(1, &texture1);
     glBindTexture(GL_TEXTURE_2D, texture1);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    image = stbi_load("images/sinTransparencia.png", &textureWidth, &textureHeight, &nrChannels, 0);
+    int textureWidth, textureHeight, nrChannels;
+    // Carga de la imagen sin invertir verticalmente
+    stbi_set_flip_vertically_on_load(false);
+
+    unsigned char* image = stbi_load("images/caja.png", &textureWidth, &textureHeight, &nrChannels, 0);
     if (image)
     {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+        GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
+        glTexImage2D(GL_TEXTURE_2D, 0, format, textureWidth, textureHeight, 0, format, GL_UNSIGNED_BYTE, image);
         glGenerateMipmap(GL_TEXTURE_2D);
+        stbi_image_free(image);
     }
     else
     {
-        std::cout << "Failed to load texture1 (sinTransparencia.png)" << std::endl;
+        std::cout << "Failed to load texture: images/caja.png" << std::endl;
     }
-    stbi_image_free(image);
 
-    // ==========================================
-    // TEXTURA 2: CON TRANSPARENCIA (RGBA)
-    // Ruta: "images/window.png"
-    // ==========================================
-    GLuint texture2;
-    glGenTextures(1, &texture2);
-    glBindTexture(GL_TEXTURE_2D, texture2);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-    image = stbi_load("images/window.png", &textureWidth, &textureHeight, &nrChannels, 0);
-    if (image)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture2 (window.png)" << std::endl;
-    }
-    stbi_image_free(image);
-
-    // Configurar uniformes del shader para las texturas
-    lampShader.Use();
-    glUniform1i(glGetUniformLocation(lampShader.Program, "ourTexture1"), 0);
-    glUniform1i(glGetUniformLocation(lampShader.Program, "ourTexture2"), 1);
-
-    // Game loop
+    // Render loop
     while (!glfwWindowShouldClose(window))
     {
         GLfloat currentFrame = glfwGetTime();
@@ -199,14 +193,20 @@ int main()
         glfwPollEvents();
         DoMovement();
 
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         lampShader.Use();
 
+        // Asegurar que el sampler use la unidad de textura 0
+        glUniform1i(glGetUniformLocation(lampShader.Program, "ourTexture"), 0);
+
         glm::mat4 view = camera.GetViewMatrix();
         glm::mat4 projection = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100.0f);
+
+        // Rotación continua para poder apreciar todas las caras del dado 3D
         glm::mat4 model(1.0f);
+        model = glm::rotate(model, (GLfloat)glfwGetTime() * 0.5f, glm::vec3(0.5f, 1.0f, 0.0f));
 
         GLint modelLoc = glGetUniformLocation(lampShader.Program, "model");
         GLint viewLoc = glGetUniformLocation(lampShader.Program, "view");
@@ -216,15 +216,11 @@ int main()
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-        // Activar y enlazar ambas texturas
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture1); // Textura opaca
-
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, texture2); // Textura transparente
+        glBindTexture(GL_TEXTURE_2D, texture1);
 
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
 
         glfwSwapBuffers(window);
@@ -232,7 +228,6 @@ int main()
 
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &EBO);
 
     glfwTerminate();
     return 0;
@@ -240,17 +235,10 @@ int main()
 
 void DoMovement()
 {
-    if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
-        camera.ProcessKeyboard(FORWARD, deltaTime);
-
-    if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
-        camera.ProcessKeyboard(BACKWARD, deltaTime);
-
-    if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
-        camera.ProcessKeyboard(LEFT, deltaTime);
-
-    if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
-        camera.ProcessKeyboard(RIGHT, deltaTime);
+    if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])    camera.ProcessKeyboard(FORWARD, deltaTime);
+    if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])  camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])  camera.ProcessKeyboard(LEFT, deltaTime);
+    if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT]) camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
 void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
@@ -260,10 +248,8 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 
     if (key >= 0 && key < 1024)
     {
-        if (action == GLFW_PRESS)
-            keys[key] = true;
-        else if (action == GLFW_RELEASE)
-            keys[key] = false;
+        if (action == GLFW_PRESS)        keys[key] = true;
+        else if (action == GLFW_RELEASE) keys[key] = false;
     }
 }
 
