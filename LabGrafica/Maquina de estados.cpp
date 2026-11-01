@@ -1,7 +1,7 @@
-//Previo 11
+//Practica 11
 //Cornejo Gonzalez Mauricio
 //319274233
-//Fecha de entrega: 26/10/2026
+//Fecha de entrega: 31/10/2026
 #include <iostream>
 #include <cmath>
 
@@ -466,44 +466,163 @@ void Animation() {
 		rotDog -= 0.6f;
 	}
 
-	if (dogAnim == 1) {
-		// Define el límite en Z antes del final del piso
-		float limitePisoZ = 2.0f;
-
-		// Avanza solo si se encuentra dentro de los límites
-		if (dogPos.z < limitePisoZ)
-		{
-			if (!step) {
-				RLegs += 0.3f;
-				FLegs += 0.3f;
-				head += 0.3f;
-				tail += 0.3f;
-
-				if (RLegs > 15.0f)
-					step = true;
-			}
-			else
-			{
-				RLegs -= 0.3f;
-				FLegs -= 0.3f;
-				head -= 0.3f;
-				tail -= 0.3f;
-
-				if (RLegs < -15.0f)
-					step = false;
-			}
-
-			
-			dogPos.z += 0.0003f;
+	if (dogAnim != 0) {
+		if (!step) {
+			RLegs += 0.5f;
+			FLegs += 0.5f;
+			head += 0.5f;
+			tail += 0.5f;
+			if (RLegs > 15.0f) step = true;
 		}
-		else
-		{
-			// Al llegar al borde, se detiene la animación y las extremidades regresan a 0.0f
-			dogAnim = 0;
-			RLegs = 0.0f;
-			FLegs = 0.0f;
-			head = 0.0f;
-			tail = 0.0f;
+		else {
+			RLegs -= 0.5f;
+			FLegs -= 0.5f;
+			head -= 0.5f;
+			tail -= 0.5f;
+			if (RLegs < -15.0f) step = false;
+		}
+
+		float speed = 0.0007f;
+
+		// Vector de dirección de frente según el ángulo actual (dogRot)
+		float rad = glm::radians(dogRot);
+		float dirX = sin(rad);
+		float dirZ = cos(rad);
+
+		switch (dogAnim) {
+			// ESQUINA 1: (0,0,0) -> (0,0,2)
+			// 1. Avanzar de frente hasta Z = 2.0
+		case 1:
+			dogPos.x += dirX * speed;
+			dogPos.z += dirZ * speed;
+			if (dogPos.z >= 2.0f) {
+				dogPos.z = 2.0f;
+				dogAnim = 2;
+			}
+			break;
+
+			// Girar a la izquierda -> 90°
+		case 2:
+			dogRot += 1.0f;
+			if (dogRot >= 90.0f) {
+				dogRot = 90.0f;
+				dogAnim = 3;
+			}
+			break;
+
+			//Avanzar hasta X = 2.0 -> Esquina 2 (2,0,2)
+		case 3:
+			dogPos.x += dirX * speed;
+			dogPos.z += dirZ * speed;
+			if (dogPos.x >= 2.0f) {
+				dogPos.x = 2.0f;
+				dogAnim = 4;
+			}
+			break;
+
+			//Girar para apuntar en diagonal a (-2,0,-2) -> 225°
+		case 4:
+			dogRot += 1.0f;
+			if (dogRot >= 225.0f) {
+				dogRot = 225.0f;
+				dogAnim = 5;
+			}
+			break;
+
+			// ESQUINA 3: (2,0,2) -> (-2,0,-2)
+			//Avanzar hasta (-2,0,-2)
+		case 5:
+			dogPos.x += dirX * speed;
+			dogPos.z += dirZ * speed;
+			if (dogPos.x <= -2.0f || dogPos.z <= -2.0f) {
+				dogPos.x = -2.0f;
+				dogPos.z = -2.0f;
+				dogAnim = 6;
+			}
+			break;
+
+			// Girar a la izquierda -> 360° para apuntar hacia Z+
+		case 6:
+			dogRot += 1.0f;
+			if (dogRot >= 360.0f) {
+				dogRot = 0.0f;
+				dogAnim = 7;
+			}
+			break;
+
+			//Avanzar de frente hasta Z = 2.0 -> Esquina 4 (-2,0,2)
+		case 7:
+			dogPos.x += dirX * speed;
+			dogPos.z += dirZ * speed;
+			if (dogPos.z >= 2.0f) {
+				dogPos.z = 2.0f;
+				dogAnim = 8;
+			}
+			break;
+
+			//Girar a la izquierda para apuntar en diagonal a (2,0,-2)
+		case 8:
+			dogRot += 1.0f;
+			if (dogRot >= 135.0f) {
+				dogRot = 135.0f;
+				dogAnim = 9;
+			}
+			break;
+
+			//Avanzar hasta (2,0,-2)
+		case 9:
+			dogPos.x += dirX * speed;
+			dogPos.z += dirZ * speed;
+			if (dogPos.x >= 2.0f || dogPos.z <= -2.0f) {
+				dogPos.x = 2.0f;
+				dogPos.z = -2.0f;
+				dogAnim = 10;
+			}
+			break;
+
+			// Girar 225° a la izquierda para apuntar a (2,0,2) en la dirección +Z -> Orientación 360° 
+		case 10:
+			dogRot += 1.0f;
+			if (dogRot >= 360.0f) {
+				dogRot = 0.0f;
+				dogAnim = 11;
+			}
+			break;
+
+			// Avanzar de frente en Z+ hasta llegar al punto (2, 0, 2)
+		case 11:
+			dogPos.x += dirX * speed;
+			dogPos.z += dirZ * speed;
+			if (dogPos.z >= 2.0f) {
+				dogPos.x = 2.0f;
+				dogPos.z = 2.0f;
+				dogAnim = 12;
+			}
+			break;
+
+			// Girar 225° a la izquierda para apuntar al origen
+		case 12:
+			dogRot += 1.0f;
+			if (dogRot >= 225.0f) {
+				dogRot = 225.0f;
+				dogAnim = 13;
+			}
+			break;
+
+			// Avanzar de regreso al origen (0,0,0)
+		case 13:
+			dogPos.x += dirX * speed;
+			dogPos.z += dirZ * speed;
+			if (dogPos.x <= 0.0f || dogPos.z <= 0.0f) {
+				dogPos = glm::vec3(0.0f, 0.0f, 0.0f);
+				dogRot = 0.0f;
+				dogAnim = 0;
+				RLegs = 0.0f;
+				FLegs = 0.0f;
+				head = 0.0f;
+				tail = 0.0f;
+			}
+			break;
 		}
 	}
 }

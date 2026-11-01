@@ -15,10 +15,10 @@ C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maqu
 C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(232,21): warning C4244:         [
 C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(232,21): warning C4244:             T=float
 C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(232,21): warning C4244:         ]
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(515,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(516,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(520,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(521,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(523,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(524,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(634,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(635,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(639,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(640,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(642,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(643,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
   ConfigIncial.vcxproj -> C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\Debug\ConfigIncial.exe
