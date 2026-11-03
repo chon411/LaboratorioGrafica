@@ -1,24 +1,24 @@
-﻿  Maquina de estados.cpp
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(197,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(230,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(230,21): warning C4244:         with
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(230,21): warning C4244:         [
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(230,21): warning C4244:             T=float
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(230,21): warning C4244:         ]
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(231,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(231,21): warning C4244:         with
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(231,21): warning C4244:         [
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(231,21): warning C4244:             T=float
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(231,21): warning C4244:         ]
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(232,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(232,21): warning C4244:         with
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(232,21): warning C4244:         [
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(232,21): warning C4244:             T=float
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(232,21): warning C4244:         ]
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(634,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(635,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(639,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(640,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(642,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\Maquina de estados.cpp(643,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+﻿  KeyFrames.cpp
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(274,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(301,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(301,21): warning C4244:         with
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(301,21): warning C4244:         [
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(301,21): warning C4244:             T=float
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(301,21): warning C4244:         ]
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(302,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(302,21): warning C4244:         with
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(302,21): warning C4244:         [
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(302,21): warning C4244:             T=float
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(302,21): warning C4244:         ]
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(303,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(303,21): warning C4244:         with
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(303,21): warning C4244:         [
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(303,21): warning C4244:             T=float
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(303,21): warning C4244:         ]
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(569,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(570,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(574,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(575,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(577,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\ConfigIncial\KeyFrames.cpp(578,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
   ConfigIncial.vcxproj -> C:\Users\corm3\OneDrive\Datos adjuntos\Escritorio\ConfigIncial\Debug\ConfigIncial.exe
